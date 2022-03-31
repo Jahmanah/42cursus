@@ -75,6 +75,7 @@ int		add_client_to_list(int fd)
     t_client *temp = g_clients;
     t_client *new;
 
+    printf("add_cl_to_lst\n");
     if (!(new = calloc(1, sizeof(t_client))))
         fatal();
     new->id = g_id++;
@@ -98,6 +99,8 @@ void add_client()
     struct sockaddr_in clientaddr;
     socklen_t len = sizeof(clientaddr);
     int client_fd;
+    printf("add_cl\n");
+
 
     if ((client_fd = accept(sock_fd, (struct sockaddr *)&clientaddr, &len)) < 0)
         fatal();
@@ -111,6 +114,9 @@ int rm_client(int fd)
     t_client *temp = g_clients;
     t_client *del;
     int id = get_id(fd);
+
+    printf("rm_client\n");
+
 
     if (temp && temp->fd == fd)
     {
@@ -132,6 +138,8 @@ void ex_msg(int fd)
 {
     int i = 0;
     int j = 0;
+
+    printf("ex_msg fd=%d\n", fd);
 
     while (str[i])
     {
